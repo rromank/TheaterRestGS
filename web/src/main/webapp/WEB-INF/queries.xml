@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="queries" class="java.util.HashMap" >
+        <constructor-arg>
+            <map key-type="java.lang.String" value-type="java.lang.String">
+                <entry key="MOVIE_INSERT" value="INSERT INTO movie (title, total_seats, free_seats, date) VALUES (:title, :total_seats, :free_seats, :date)"/>
+                <entry key="MOVIE_SELECT_ALL" value="SELECT * FROM movie"/>
+                <entry key="MOVIE_SELECT_BY_ID" value="SELECT * FROM movie WHERE movie_id = :movie_id"/>
+                <entry key="MOVIE_UPDATE_BY_ID" value="UPDATE movie SET title = :title, total_seats = :total_seats, free_seats = :free_seats, date = :date WHERE movie_id = :movie_id"/>
+                <entry key="MOVIE_DELETE_BY_ID" value="DELETE FROM movie WHERE movie_id = :movie_id"/>
+                <entry key="MOVIE_DELETE_ALL" value="DELETE FROM movie"/>
+
+                <entry key="TICKET_INSERT" value="INSERT INTO ticket (movie_id, seat_number) VALUES (:movie_id, :seat_number)"/>
+                <entry key="TICKET_SELECT_ALL" value="SELECT * FROM ticket LEFT JOIN movie ON ticket.movie_id = movie.movie_id"/>
+                <entry key="TICKET_DELETE_BY_ID" value="DELETE FROM ticket WHERE ticket_id = :ticket_id"/>
+                <entry key="TICKET_SELECT_BY_ID" value="SELECT * FROM ticket LEFT JOIN movie ON ticket.movie_id = movie.movie_id WHERE ticket_id = :ticket_id"/>
+                <entry key="TICKET_SELECT_UNUSED_SEAT_NUMBER" value="SELECT min(unused) AS unused FROM (SELECT MIN(t1.seat_number)+1 as unused FROM ticket AS t1 WHERE NOT EXISTS (SELECT * FROM ticket AS t2 WHERE t2.seat_number = t1.seat_number+1 AND movie_id = :movie_id) UNION SELECT 1 FROM DUAL WHERE NOT EXISTS (SELECT * FROM ticket WHERE seat_number = 1 AND movie_id = :movie_id)) AS subquery"/>
+                <entry key="TICKET_DELETE_ALL" value="DELETE FROM ticket"/>
+            </map>
+        </constructor-arg>
+    </bean>
+
+</beans>
