@@ -28,6 +28,7 @@
 		<module>dao</module>
 		<module>space</module>
 		<module>services</module>
+		<module>mirror</module>
 		<module>web</module>
 	</modules>
 	<dependencies>
