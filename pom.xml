@@ -26,7 +26,8 @@
 	<modules>
 		<module>common</module>
 		<module>dao</module>
-		<module>initialLoader</module>
+		<module>space</module>
+		<module>eventBasedService</module>
 		<module>web</module>
 	</modules>
 	<dependencies>

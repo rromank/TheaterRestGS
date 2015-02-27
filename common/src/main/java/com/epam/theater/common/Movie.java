@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.gigaspaces.annotation.pojo.SpaceClass;
 import com.gigaspaces.annotation.pojo.SpaceId;
 import com.gigaspaces.annotation.pojo.SpaceProperty;
+import com.gigaspaces.annotation.pojo.SpaceRouting;
+import org.openspaces.remoting.Routing;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -75,7 +77,8 @@ public class Movie implements Serializable {
     @Override
     public String toString() {
         return "Movie{" +
-                "title='" + title + '\'' +
+                "id=" + id +
+                ", title='" + title + '\'' +
                 ", totalSeats=" + totalSeats +
                 ", freeSeats=" + freeSeats +
                 ", date=" + date +

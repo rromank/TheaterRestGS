@@ -3,11 +3,13 @@ package com.epam.theater.dao;
 import com.epam.theater.common.Movie;
 import org.openspaces.core.GigaSpace;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Logger;
 
+@Component(value = "movieDao")
 public class GSMovieDao implements MovieDao {
 
     Logger log = Logger.getLogger(this.getClass().getName());

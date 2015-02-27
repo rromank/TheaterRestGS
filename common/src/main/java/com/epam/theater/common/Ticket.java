@@ -1,8 +1,10 @@
 package com.epam.theater.common;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.gigaspaces.annotation.pojo.SpaceClass;
 import com.gigaspaces.annotation.pojo.SpaceId;
 import com.gigaspaces.annotation.pojo.SpaceProperty;
+import com.gigaspaces.annotation.pojo.SpaceRouting;
 
 import java.io.Serializable;
 
@@ -12,6 +14,9 @@ public class Ticket implements Serializable {
     private String id;
     private Movie movie;
     private int seatNumber;
+
+    @JsonIgnore
+    private boolean checked;
 
     public Ticket() {}
 
@@ -44,6 +49,14 @@ public class Ticket implements Serializable {
 
     public void setSeatNumber(int seatNumber) {
         this.seatNumber = seatNumber;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
     }
 
     @Override

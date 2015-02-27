@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.epam.theater</groupId>
-    <artifactId>initialLoader</artifactId>
+    <artifactId>space</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>initialLoader</name>
+    <name>space</name>
     <parent>
         <groupId>com.epam.theater</groupId>
         <artifactId>TheaterRestGS</artifactId>
@@ -35,7 +35,7 @@
         </dependency>
     </dependencies>
     <build>
-        <finalName>TheaterRestGS-initialLoader</finalName>
+        <finalName>TheaterRestGS-space</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>

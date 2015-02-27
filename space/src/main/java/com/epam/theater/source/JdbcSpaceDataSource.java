@@ -1,4 +1,4 @@
-package com.epam.theater;
+package com.epam.theater.source;
 
 import com.epam.theater.dao.MovieDao;
 import com.gigaspaces.datasource.DataIterator;
@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.logging.Logger;
 
 public class JdbcSpaceDataSource extends SpaceDataSource {
 

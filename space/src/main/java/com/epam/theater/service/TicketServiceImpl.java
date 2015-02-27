@@ -1,22 +1,25 @@
 package com.epam.theater.service;
 
-import com.epam.theater.dao.MovieDao;
-import com.epam.theater.dao.TicketDao;
 import com.epam.theater.common.Movie;
 import com.epam.theater.common.Ticket;
+import com.epam.theater.dao.MovieDao;
+import com.epam.theater.dao.TicketDao;
 import com.epam.theater.service.exception.ServiceException;
+import org.openspaces.remoting.RemotingService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Qualifier;
 
 import java.util.List;
 
-@Service
+@RemotingService
 public class TicketServiceImpl implements TicketService {
 
     @Autowired
+    @Qualifier(value = "ticketDaoGS")
     private TicketDao ticketDao;
 
     @Autowired
+    @Qualifier(value = "movieDaoGS")
     private MovieDao movieDao;
 
     @Override
@@ -31,11 +34,6 @@ public class TicketServiceImpl implements TicketService {
         ticket.setSeatNumber(unusedSeatNumber);
 
         return ticketDao.add(ticket);
-    }
-
-    @org.springframework.web.bind.annotation.ExceptionHandler(value = ServiceException.class)
-    public String defaultExceptionHandler() {
-        return "asd";
     }
 
     @Override
