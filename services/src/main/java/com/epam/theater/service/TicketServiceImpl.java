@@ -15,11 +15,11 @@ import java.util.List;
 public class TicketServiceImpl implements TicketService {
 
     @Autowired
-    @Qualifier(value = "ticketDaoGS")
+    @Qualifier(value = "ticketDao")
     private TicketDao ticketDao;
 
     @Autowired
-    @Qualifier(value = "movieDaoGS")
+    @Qualifier(value = "movieDao")
     private MovieDao movieDao;
 
     @Override

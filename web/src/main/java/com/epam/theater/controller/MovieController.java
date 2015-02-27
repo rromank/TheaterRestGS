@@ -4,6 +4,7 @@ import com.epam.theater.common.Movie;
 import com.epam.theater.domain.validator.MovieValidator;
 import com.epam.theater.service.MovieService;
 import com.epam.theater.service.message.StatusMessage;
+import org.openspaces.remoting.EventDrivenProxy;
 import org.openspaces.remoting.ExecutorProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,12 +23,8 @@ public class MovieController {
 
     Logger log = Logger.getLogger(this.getClass().getName());
 
-    @ExecutorProxy(broadcast = true)
+    @EventDrivenProxy(timeout=15000)
     private MovieService movieService;
-
-    public MovieController(MovieService movieService) {
-        this.movieService = movieService;
-    }
 
     @InitBinder
     protected void initBinder(WebDataBinder binder) {
@@ -36,9 +33,6 @@ public class MovieController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Movie>> getAll() {
-        log.info("=====================================================");
-        log.info("Broadcasting on");
-        log.info("=====================================================");
         return new ResponseEntity<List<Movie>>(movieService.getAll(), HttpStatus.OK);
     }
 

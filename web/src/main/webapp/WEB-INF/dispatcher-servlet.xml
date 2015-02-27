@@ -2,13 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:os-core="http://www.openspaces.org/schema/core" xmlns:os-admin="http://www.openspaces.org/schema/admin"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:os-core="http://www.openspaces.org/schema/core"
        xmlns:os-remoting="http://www.openspaces.org/schema/remoting"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
         http://www.openspaces.org/schema/core http://www.openspaces.org/schema/10.0/core/openspaces-core.xsd
-        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.openspaces.org/schema/admin http://www.openspaces.org/schema/9.7/admin/openspaces-admin.xsd http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/10.0/remoting/openspaces-remoting.xsd">
+          http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd   http://www.openspaces.org/schema/remoting http://www.openspaces.org/schema/10.0/remoting/openspaces-remoting.xsd">
 
     <context:component-scan base-package="com.epam.theater" />
 
@@ -17,29 +17,20 @@
     <os-core:space id="space" url="jini://*/*/space?groups=gigaspaces-10.1.0-XAPPremium-m11" />
     <os-core:giga-space id="gigaSpace" space="space" />
 
-    <bean id="movieService" class="org.openspaces.remoting.ExecutorSpaceRemotingProxyFactoryBean">
-        <property name="gigaSpace" ref="gigaSpace" />
-        <property name="timeout" value="60000" />
-        <property name="serviceInterface" value="com.epam.theater.service.MovieService"/>
-    </bean>
+    <os-remoting:annotation-support />
 
-    <bean id="ticketService" class="org.openspaces.remoting.ExecutorSpaceRemotingProxyFactoryBean">
-        <property name="gigaSpace" ref="gigaSpace" />
-        <property name="timeout" value="60000" />
-        <property name="serviceInterface" value="com.epam.theater.service.TicketService"/>
-    </bean>
+    <os-remoting:event-driven-proxy id="movieService" giga-space="gigaSpace"
+                                    interface="com.epam.theater.service.MovieService" timeout="15000">
+    </os-remoting:event-driven-proxy>
 
-    <bean id="movieController" class="com.epam.theater.controller.MovieController">
-        <constructor-arg ref="movieService" type="com.epam.theater.service.MovieService"/>
-    </bean>
-
-    <bean id="ticketController" class="com.epam.theater.controller.TicketController">
-        <constructor-arg ref="ticketService" type="com.epam.theater.service.TicketService"/>
-    </bean>
+    <os-remoting:event-driven-proxy id="ticketService" giga-space="gigaSpace"
+                                    interface="com.epam.theater.service.TicketService" timeout="15000">
+    </os-remoting:event-driven-proxy>
 
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="false">
             <bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
         </mvc:message-converters>
     </mvc:annotation-driven>
+
 </beans>

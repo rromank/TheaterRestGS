@@ -13,7 +13,7 @@ import java.util.List;
 public class MovieServiceImpl implements MovieService {
 
     @Autowired
-    @Qualifier(value = "movieDaoGS")
+    @Qualifier(value = "movieDao")
     private MovieDao movieDao;
 
     @Override

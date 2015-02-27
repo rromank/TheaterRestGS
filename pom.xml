@@ -27,7 +27,7 @@
 		<module>common</module>
 		<module>dao</module>
 		<module>space</module>
-		<module>eventBasedService</module>
+		<module>services</module>
 		<module>web</module>
 	</modules>
 	<dependencies>

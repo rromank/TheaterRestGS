@@ -26,6 +26,9 @@ public class Main {
                 .timeout(15000).proxy();
 
         eventService.logToConsole();
+
+        MovieService movieService = new EventDrivenRemotingProxyConfigurer<>(gigaSpace, MovieService.class).timeout(15000).proxy();
+        System.out.println(movieService.getAll());
     }
 
 }

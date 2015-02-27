@@ -37,11 +37,6 @@
     </bean>
 
     <os-core:giga-space-context/>
-    <os-remoting:annotation-support />
-    <os-remoting:service-exporter  id="serviceExporter"/>
-
-    <bean id="movieDaoGS" class="com.epam.theater.dao.GSMovieDao"/>
-    <bean id="ticketDaoGS" class="com.epam.theater.dao.GSTicketDao"/>
 
     <bean id="propertiesConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"/>
 

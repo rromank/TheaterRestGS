@@ -2,10 +2,10 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.epam.theater</groupId>
-    <artifactId>eventBasedService</artifactId>
+    <artifactId>services</artifactId>
     <packaging>jar</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>eventBasedService</name>
+    <name>services</name>
     <parent>
         <groupId>com.epam.theater</groupId>
         <artifactId>TheaterRestGS</artifactId>
@@ -21,9 +21,14 @@
             <version>1.0-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.epam.theater</groupId>
+            <artifactId>dao</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
     </dependencies>
     <build>
-        <finalName>TheaterRestGS-eventBasedService</finalName>
+        <finalName>TheaterRestGS-services</finalName>
         <plugins>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>

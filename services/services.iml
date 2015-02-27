@@ -4,7 +4,7 @@
     <facet type="Spring" name="Spring">
       <configuration>
         <fileset id="fileset" name="Spring Application Context" removed="false">
-          <file>file://$MODULE_DIR$/src/main/resources/META-INF/spring/pu.xml</file>
+          <file>file://$MODULE_DIR$/../eventBasedService/src/main/resources/META-INF/spring/pu.xml</file>
         </fileset>
       </configuration>
     </facet>
@@ -21,6 +21,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="required" level="project" />
     <orderEntry type="module" module-name="common" />
+    <orderEntry type="module" module-name="dao" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.gigaspaces:gs-openspaces:10.1.0-12593-M11" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: com.gigaspaces:gs-runtime:10.1.0-12593-M11" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.springframework:spring-aop:4.1.1.RELEASE" level="project" />

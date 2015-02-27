@@ -3,6 +3,7 @@ package com.epam.theater.controller;
 import com.epam.theater.common.Ticket;
 import com.epam.theater.service.TicketService;
 import com.epam.theater.service.message.StatusMessage;
+import org.openspaces.remoting.EventDrivenProxy;
 import org.openspaces.remoting.ExecutorProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,12 +20,8 @@ import java.util.List;
 @RequestMapping("/ticket")
 public class TicketController {
 
-    @ExecutorProxy
+    @EventDrivenProxy(timeout=15000)
     private TicketService ticketService;
-
-    public TicketController(TicketService ticketService) {
-        this.ticketService = ticketService;
-    }
 
     @RequestMapping(method = RequestMethod.GET)
     public List<Ticket> getAll() {
